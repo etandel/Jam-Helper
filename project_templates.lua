@@ -79,9 +79,37 @@ local function generate_lua(name)
     lfs.chdir('..')
 end
 
+
+local function generate_moonscript(name)
+    lfs.mkdir(name)
+    lfs.chdir(name)
+
+
+    local main_name = name .. '.moon'
+    local main_content =
+[[
+#!/usr/bin/moon
+
+input = io.open arg[1], 'r'
+out   = io.open 'output.out', 'w'
+
+input\close!
+out\close!
+]]
+
+    local main = io.open(main_name, 'w')
+    main:write(main_content)
+    main:close()
+    os.execute('chmod +x ' .. main_name)
+
+    lfs.chdir('..')
+end
+
 local template_gen = {
     c   = generate_c,
     lua = generate_lua,
+    moonscript = generate_moonscript,
+    moon = generate_moonscript, -- alias for moonscript
 }
 
 return template_gen
