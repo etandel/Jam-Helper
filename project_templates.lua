@@ -70,7 +70,17 @@ local function generate_lua(name)
 
 
     local main_name = name .. '.lua'
-    local main_content = '#!/usr/bin/lua\n'
+    local main_content =
+[[
+#!/usr/bin/lua
+
+input = io.open(arg[1], 'r')
+out   = io.open('output.out', 'w')
+
+input:close()
+out:close()
+]]
+
     local main = io.open(main_name, 'w')
     os.execute('chmod +x ' .. main_name)
     main:write(main_content)
@@ -78,7 +88,6 @@ local function generate_lua(name)
 
     lfs.chdir('..')
 end
-
 
 local function generate_moonscript(name)
     lfs.mkdir(name)
