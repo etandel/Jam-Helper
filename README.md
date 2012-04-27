@@ -6,6 +6,10 @@ The project is still under development, but can be already a little helpful, sin
 - C
 - Lua
 
+The dependencies are:
+- Lua 5.1
+- LFS (LuaFileSystem)
+
 ##2) Usage
 The API can (and probably will) be changed at any time, but for now, the only supported feature is creating new projects, which is done with the command:
 ```bash
